@@ -1,7 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
-#include "Ship.h"
+#include "game.h"
 
 class Bullet : public sf::Sprite {
 public:

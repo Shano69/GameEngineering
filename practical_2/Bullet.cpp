@@ -1,8 +1,12 @@
 #include "Bullet.h"
+#include "Ship.h"
+
 
 using namespace sf;
 using namespace std;
 
+unsigned char Bullet::bulletPointer;
+Bullet Bullet::bullets[256];
 
 
 
@@ -31,6 +35,11 @@ void Bullet::Fire(const sf::Vector2f & pos, const bool mode)
 
 }
 
+bool Ship::is_exploded() const
+{
+	return false;
+}
+
 void Ship::Explode() {
 	setTextureRect(IntRect(128, 32, 32, 32));
 	_exploded = true;
@@ -50,10 +59,10 @@ void Bullet::_Update(const float &dt) {
 		const FloatRect boundingBox = getGlobalBounds();
 
 		for (auto s : ships) {
-			if ( !_mode && s == dynamic_cast<Ship*>(player)) {
+			if ( !_mode && s == player) {
 				continue;
 			}
-			if (_mode && s != dynamic_cast<Ship*>(player)) {
+			if (_mode && s !=player) {
 				continue;
 			}
 

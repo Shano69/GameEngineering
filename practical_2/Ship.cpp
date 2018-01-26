@@ -4,9 +4,9 @@ using namespace sf;
 using namespace std;
 
 bool Invader::direction=true;
-float Invader::speed = 20.f;
+float Invader::speed = 30.f;
 
-float Player::speed = .05f;
+float Player::speed =.05f;
 Ship::Ship() {};
 
 Ship::~Ship() {}
@@ -19,7 +19,12 @@ Ship::Ship(IntRect ir) : Sprite() {
 	setTextureRect(_sprite);
 };
 
-void Ship::Update(const float &dt){}
+void Ship::Update(const float &dt){
+	if (toFade) {
+		auto color = Color(getColor().r, getColor().g, getColor().b, getColor().a - dt);
+		setColor(color);
+	}
+}
 
 
 
@@ -40,6 +45,15 @@ void Invader::Update(const float & dt)
 		}
 	}
 	
+	static float firetime = 0.0f;
+	firetime -= dt;
+	if (firetime <= 0 && rand() % 100 == 0 && !toFade)
+	{
+		Bullet::Fire(getPosition(), true);
+		firetime = 4 + (rand() % 60);
+	}
+	
+	
 }
 
 Invader::Invader(sf::IntRect ir, sf::Vector2f pos) : Ship(ir) {
@@ -56,17 +70,16 @@ void Player::Update(const float &dt) {
 	
 	
 	float direction=0;
-	if (Keyboard::isKeyPressed(controls[0]))
+	if (Keyboard::isKeyPressed(controls[0])&&getPosition().x>0)
 	{
 		direction--;
 	}
-	if (Keyboard::isKeyPressed(controls[1]))
+	if (Keyboard::isKeyPressed(controls[1]) && getPosition().x<gameWidth-32.0f)
 	{
 		direction++;
 	}
 
 	//PEW PEW CODE
-	static vector<Bullet*> bullets;
 	static float firetime = 0.0f;
 	firetime -= dt;
 
@@ -76,7 +89,17 @@ void Player::Update(const float &dt) {
 		firetime = 0.7f;
 	}
 
-	
+	move(direction*speed,0);
+}
 
-	ships[ships.size() - 1]->move(direction*speed,0);
+bool Ship::is_exploded() const
+{
+	return _exploded;
+}
+
+void Ship::Explode() {
+	setTextureRect(IntRect(128, 32, 32, 32));
+	_exploded = true;
+	//auto color = Color(getColor().r, getColor().g, getColor().b, getColor().a);
+	toFade = true;
 }

@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Ship.h"
+#include "Bullet.h"
+#include "game.h"
 
 using namespace sf;
 using namespace std;
@@ -40,6 +42,8 @@ void Update()
 	static Clock clock;
 	float dt = clock.restart().asSeconds();
 
+	Bullet::Update(dt);
+
 	for(auto &a :ships) {
 		a->Update(dt);
 	}
@@ -52,6 +56,8 @@ void Render(RenderWindow &window)
 	for (const auto &a : ships) {
 		window.draw(*a);
 	}
+
+	Bullet::Render(window);
 }
 
 int main()
@@ -59,13 +65,22 @@ int main()
 	
 	RenderWindow window(VideoMode(gameWidth, gameHeight), "Space Invaders");
 	Load();
+	
 	while (window.isOpen())
 	{
+		
+	
 		window.clear();
 		Update();
 		Render(window);
 		window.display();
+		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
+		}
 	}
+
+
 	return 0;
 }
 

@@ -9,13 +9,14 @@ public:
 	static void Render(sf::RenderWindow &window);
 	
 	static void Fire(const sf::Vector2f &pos, const bool mode);
-
+	static Bullet bullets[256];
 	~Bullet() = default;
 
+	void setMode(bool mode) { _mode = mode; }
 protected:
 	Bullet();
 	bool  _mode;
 	static unsigned char bulletPointer;
-	static Bullet bullets[256];
+	
 	void _Update(const float &dt);
 };

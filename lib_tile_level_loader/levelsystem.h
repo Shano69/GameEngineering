@@ -18,6 +18,9 @@ public:
     static sf::Color getColor(TILE t);
     static void setColor(TILE t, sf::Color c);
 
+	static size_t getHeight() { return _height; }
+	static size_t getWidth() { return _width; }
+
     //get tile at grid coordinate
     static TILE getTile (sf::Vector2ul);
     //get Screenspace coordinate of tile
@@ -31,6 +34,7 @@ protected:
     static size_t _height;
     static sf::Vector2f _offset;
     static float _tileSize;
+	static std::map<TILE, sf::Color> _colours;
 
     static std::vector<std::unique_ptr<sf::RectangleShape>> _sprites;
     static void buildSprites();

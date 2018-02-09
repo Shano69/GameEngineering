@@ -11,7 +11,6 @@ void Load() {
 	
 	ls::loadLevelFile("res/maze_2.txt");
 
-	for(size_t y = 0; y < ls::getHeight();)
 }
 
 

@@ -27,7 +27,7 @@ sf::Color LevelSystem::getColor(LevelSystem::TILE t) {
 }
 
 void LevelSystem::setColor(LevelSystem::TILE t, sf::Color c) {
-    std::map<t, c>;
+	//IDK WHAT TO DO HERE
 }
 
 void LevelSystem::loadLevelFile(const std::string& path, float tileSize) {
@@ -98,7 +98,7 @@ void LevelSystem::buildSprites() {
             auto s = make_unique<sf::RectangleShape>();
             s->setPosition(getTilePosition({x, y}));
             s->setSize(Vector2f(_tileSize, _tileSize));
-            s_>setFillColor(getColor(getTile({x, y})));
+            s->setFillColor(getColor(getTile({x, y})));
             _sprites.push_back(move(s));
         }
     }

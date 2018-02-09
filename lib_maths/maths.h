@@ -13,7 +13,7 @@ namespace sf {
 		return powf(sqrt(v.x)+sqrt(v.y),0.5f);
 	}
 
-	template <typename> Vector2<T> normalize(const Vector2<T> &v) {
+	template <typename T> Vector2<T> normalize(const Vector2<T> &v) {
 		Vector2<T> vector;
 		double l = length(v);
 		if (l != 0) {
@@ -32,8 +32,8 @@ namespace sf {
 		return degrees * 0.0174532925;
 	}
 
-	template <typename>
-	Vector2<T> rotate(const Vector2<T> &v, cosnt double degrees) {
+	template <typename T>
+	Vector2<T> rotate(const Vector2<T> &v, const double degrees) {
 		const double theta = deg2rad(degrees);
 		const double cs = cos(theta);
 		const double sn = sin(theta);

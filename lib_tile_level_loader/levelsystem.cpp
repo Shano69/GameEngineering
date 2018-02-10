@@ -27,7 +27,7 @@ sf::Color LevelSystem::getColor(LevelSystem::TILE t) {
 }
 
 void LevelSystem::setColor(LevelSystem::TILE t, sf::Color c) {
-	//IDK WHAT TO DO HERE
+	_colours[t] = c;
 }
 
 void LevelSystem::loadLevelFile(const std::string& path, float tileSize) {

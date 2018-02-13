@@ -2,6 +2,7 @@
 using namespace sf;
 using namespace std;
 
+
 void Player::update(double dt) {
 
 	Vector2f direction;
@@ -15,11 +16,11 @@ void Player::update(double dt) {
 	}
 	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
-		direction.y;
+		direction.y--;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::S))
 	{
-		direction.x++;
+		direction.y++;
 	}
 	move(direction*_speed);
 
@@ -27,7 +28,7 @@ void Player::update(double dt) {
 }
 
 Player::Player()
-	: _speed(200.0f), Entity(make_unique<CircleShape>(25.0f)) {
+	: _speed(.1f), Entity(make_unique<CircleShape>(25.0f)) {
 	_shape->setFillColor(Color::Magenta);
 	_shape->setOrigin(Vector2f(25.0f, 25.0f));
 }

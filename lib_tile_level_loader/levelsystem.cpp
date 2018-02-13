@@ -55,10 +55,10 @@ void LevelSystem::loadLevelFile(const std::string& path, float tileSize) {
                 temp_tiles.push_back(WALL);
                 break;
             case 's':
-                temp_tiles.push_back(END);
+                temp_tiles.push_back(START);
                 break;
             case 'e':
-                temp_tiles.push_back(EMPTY);
+                temp_tiles.push_back(END);
                 break;
             case ' ':
                 temp_tiles.push_back(EMPTY);

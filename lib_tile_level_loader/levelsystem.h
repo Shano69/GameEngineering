@@ -13,7 +13,7 @@ class LevelSystem {
 public:
     enum TILE {EMPTY, START,END, WALL, ENEMY, WAYPOINT};
 
-    static void loadLevelFile(const std::string&, float tileSize=100.0f);
+    static void loadLevelFile(const std::string&, float tileSize=20.0f);
     static void render(sf::RenderWindow &window);
     static sf::Color getColor(TILE t);
     static void setColor(TILE t, sf::Color c);
